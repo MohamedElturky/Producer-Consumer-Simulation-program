@@ -17,7 +17,7 @@ public class Machine implements Runnable {
     @Override
     public void run() {
         try {
-            while (true) {
+            while (inputQueue.getSize() > 0 || !Thread.currentThread().isInterrupted()) {
                 Product product = inputQueue.removeProduct();
                 processProduct(product);
                 outputQueue.addProduct(product);

@@ -2,7 +2,7 @@ package com.producer_consumer.simulation;
 
 import com.producer_consumer.simulation.components.Machine;
 import com.producer_consumer.simulation.components.Queue;
-import com.producer_consumer.simulation.components.Product;
+//import com.producer_consumer.simulation.components.Product;
 
 import java.util.ArrayList;
 import java.util.List;
