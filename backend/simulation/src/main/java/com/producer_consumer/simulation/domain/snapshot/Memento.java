@@ -13,6 +13,7 @@ public class Memento {
         this.queueSizes = new ArrayList<>();
     }
 
+
     // Constructor with predefined lists
     public Memento(List<String> machineColors, List<Integer> queueSizes) {
         this.machineColors = new ArrayList<>(machineColors); // Defensive copy

@@ -40,9 +40,10 @@ public class SimulationService {
         simulationSystem.connectMachineToQueue(queueId, machineId);
     }
 
-//    public ArrayList<Memento> sendingUpdates() {
-//        return CareTaker.getInstance().getMementos();
-//    }
+    //need to handle this
+    public ArrayList<Memento> sendingUpdates() {
+        return (ArrayList<Memento>) CareTaker.getInstance().getMementos();
+    }
 
     public void startSimulationSystem(int numberOfProducts) {
         setNumberOfProductsInSystem(numberOfProducts);
