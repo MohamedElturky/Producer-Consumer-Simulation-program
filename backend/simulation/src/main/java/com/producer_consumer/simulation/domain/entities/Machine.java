@@ -16,14 +16,14 @@ public class Machine implements Observable, Runnable {
     private boolean isReady;
     private ProductsQueue successorQueue;
     private Product inOutProduct;
-    private final CareTaker careTaker;
+    private static CareTaker careTaker;
     private ProductsQueue lastSupplier;
 
     public Machine(int id) {
         this.id = id;
         this.processingRate = generateProcessingRate(3000, 10000);
         this.observers = new ArrayList<>(5);
-        this.careTaker = CareTaker.getCareTaker();
+        CareTaker careTaker = CareTaker.getInstance();
         this.isReady = true;
 
         System.out.println("Machine: " + this.id + " takes time " + this.processingRate + " ms to process.");
