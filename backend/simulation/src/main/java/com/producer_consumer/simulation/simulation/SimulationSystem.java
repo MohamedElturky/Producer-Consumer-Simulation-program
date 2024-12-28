@@ -113,10 +113,14 @@ public class SimulationSystem {
     public void connectMachineToQueue(int queueId, int machineId) {
         ProductsQueue queue = getQueueById(queueId);
         Machine machine = getMachineById(machineId);
-        if (queue != null && machine != null) {
+        if (queue == null || machine == null) {
+            System.err.println("Failed to connect Machine " + machineId + " to Queue " + queueId);
+        } else {
             machine.setSuccessorQueue(queue);
+            System.out.println("Machine " + machineId + " connected to Queue " + queueId);
         }
     }
+
 
     // Clear simulation data
     public void clear() {

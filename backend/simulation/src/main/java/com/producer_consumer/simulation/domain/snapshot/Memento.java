@@ -13,11 +13,24 @@ public class Memento {
         this.queueSizes = new ArrayList<>();
     }
 
-
     // Constructor with predefined lists
     public Memento(List<String> machineColors, List<Integer> queueSizes) {
         this.machineColors = new ArrayList<>(machineColors); // Defensive copy
         this.queueSizes = new ArrayList<>(queueSizes);
+    }
+
+    // Ensure the capacity and initialize default values for machineColors
+    public void ensureMachineColorsCapacity(int index, String defaultColor) {
+        while (machineColors.size() <= index) {
+            machineColors.add(defaultColor);
+        }
+    }
+
+    // Ensure the capacity and initialize default values for queueSizes
+    public void ensureQueueSizesCapacity(int index, int defaultSize) {
+        while (queueSizes.size() <= index) {
+            queueSizes.add(defaultSize);
+        }
     }
 
     // Add a machine color
@@ -30,13 +43,13 @@ public class Memento {
         this.queueSizes.add(size);
     }
 
-    // Getters return unmodifiable views for immutability
+    // Getters return the lists directly
     public List<String> getMachineColors() {
-        return new ArrayList<>(machineColors);
+        return machineColors;
     }
 
     public List<Integer> getQueueSizes() {
-        return new ArrayList<>(queueSizes);
+        return queueSizes;
     }
 
     // String representation for debugging

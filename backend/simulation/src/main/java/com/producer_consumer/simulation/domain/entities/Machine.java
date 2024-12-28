@@ -23,7 +23,7 @@ public class Machine implements Observable, Runnable {
         this.id = id;
         this.processingRate = generateProcessingRate(3000, 10000);
         this.observers = new ArrayList<>(5);
-        CareTaker careTaker = CareTaker.getInstance();
+        this.careTaker = CareTaker.getInstance(); // Ensure careTaker is initialized
         this.isReady = true;
 
         System.out.println("Machine: " + this.id + " takes time " + this.processingRate + " ms to process.");
@@ -93,6 +93,10 @@ public class Machine implements Observable, Runnable {
 
     @Override
     public void run() {
+        if (successorQueue == null) {
+            System.err.println("Error: Successor queue is not set for Machine " + id);
+            return; // Exit the thread gracefully
+        }
         while (true) {
             try {
                 Memento machineChanges = null;
@@ -122,6 +126,10 @@ public class Machine implements Observable, Runnable {
     }
 
     private void updateMementoForProcessingStart(Memento memento) {
+        // Ensure lists have enough capacity before setting values
+        memento.ensureMachineColorsCapacity(this.id, "#808080");
+        memento.ensureQueueSizesCapacity(this.lastSupplier.getId(), 0);
+
         memento.getMachineColors().set(this.id, inOutProduct.getColor());
         memento.getQueueSizes().set(this.lastSupplier.getId(), this.lastSupplier.getNumberOfProducts());
     }
@@ -132,17 +140,26 @@ public class Machine implements Observable, Runnable {
 
         Thread.sleep(processingRate);
 
-        machineChanges = careTaker.cloneLastMemento();
+        machineChanges.ensureMachineColorsCapacity(this.id, "#808080");
         machineChanges.getMachineColors().set(this.id, "#808080");
-        machineChanges.getQueueSizes().set(this.successorQueue.getId(), this.successorQueue.getNumberOfProducts() + 1);
 
-        System.out.println(Thread.currentThread() + " created Memento at the end of processing: " + machineChanges);
-        careTaker.addMemento(machineChanges);
+        if (successorQueue != null) {
+            machineChanges.ensureQueueSizesCapacity(this.successorQueue.getId(), 0);
+            machineChanges.getQueueSizes().set(this.successorQueue.getId(), this.successorQueue.getNumberOfProducts() + 1);
 
-        this.successorQueue.addProduct(inOutProduct);
+            System.out.println(Thread.currentThread() + " created Memento at the end of processing: " + machineChanges);
+            careTaker.addMemento(machineChanges);
+
+            this.successorQueue.addProduct(inOutProduct);
+        } else {
+            System.err.println("Warning: Successor queue is null. Skipping successor queue operations.");
+        }
+
         inOutProduct = null;
         isReady = true;
     }
+
+
 
     private boolean isSimulationComplete() {
         SimulationSystem system = SimulationSystem.getInstance();
