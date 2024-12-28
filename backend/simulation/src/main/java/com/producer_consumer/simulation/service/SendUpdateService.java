@@ -1,4 +1,4 @@
-package com.example.producerconsumersimulation.websocket;
+package com.producer_consumer.simulation.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
