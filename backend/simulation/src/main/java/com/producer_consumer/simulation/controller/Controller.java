@@ -4,8 +4,6 @@ import com.producer_consumer.simulation.service.SimulationService;
 import com.producer_consumer.simulation.domain.dto.SystemDto;
 import com.producer_consumer.simulation.domain.snapshot.Memento;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -13,32 +11,27 @@ import java.util.ArrayList;
 @RestController
 @RequestMapping("/")
 @CrossOrigin("*")
+
 public class Controller {
 
     @Autowired
     private SimulationService service;
-//
-//    @MessageMapping("/send-message")
-//    @SendTo("/topic/messages")
-//    public void handleMessage(String message) {
-//        // Process the message if needed
-//        //        return "Received message: " + message;
-//    }
+
 
     @PostMapping("/addMachine")
     public void addMachine(@RequestBody int id){
-//        System.out.println(id);
+        System.out.println(id);
         service.addMachineToSystem(id);
     }
 
     @PostMapping("/addQueue")
     public void addQueue(@RequestBody int id){
-//        System.out.println(id);
+        System.out.println(id);
         service.addQueueToSystem(id);
     }
     @PostMapping("/addConnection")
     public void addConnection(@RequestBody SystemDto systemDto){
-//        System.out.println(systemDto);
+        System.out.println(systemDto);
         service.addConnectionToSystem(systemDto);
     }
 
