@@ -1,0 +1,115 @@
+/* Global styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  padding: 20px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+h1, h2 {
+  color: #2c3e50;
+  text-align: center;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #2980b9;
+}
+
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #16a085;
+}
+
+/* Form styles */
+form {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  margin: 10px;
+}
+
+input[type="number"], select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+input[type="number"]:focus, select:focus {
+  border-color: #2980b9;
+  outline: none;
+  box-shadow: 0 0 5px rgba(41, 128, 185, 0.5);
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.1rem;
+  background-color: #2980b9;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #3498db;
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* Container for forms */
+div {
+  text-align: center;
+}
+
+/* Update list styles */
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 30px;
+}
+
+ul li {
+  background-color: #ecf0f1;
+  border-radius: 4px;
+  padding: 12px;
+  margin-bottom: 8px;
+  font-size: 1rem;
+  color: #2c3e50;
+}
+
+ul li:last-child {
+  margin-bottom: 0;
+}
+
+ul li span {
+  font-weight: bold;
+  color: #2980b9;
+}
+
+/* Error message styles */
+p {
+  color: #e74c3c;
+  font-size: 1.2rem;
+  margin-top: 20px;
+}
